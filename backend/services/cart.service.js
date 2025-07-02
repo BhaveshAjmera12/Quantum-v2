@@ -5,7 +5,8 @@ export const createCart = async (userId, productId, price) => {
     const newCart = new cartModel({
       user: userId,
       products: [{ product: productId, quantity: 1, price: price }],
-      
+       totalItems: 1,
+       totalPrice: price,
     });
 
     await newCart.save();
