@@ -1,0 +1,1 @@
+<button className="bg-blue-500 m-2 rounded-2xl p-2">user</button>

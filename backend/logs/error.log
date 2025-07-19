@@ -1,0 +1,53 @@
+[2025-05-12 16:33:17] [31merror[39m: something went wrong
+[2025-05-16 11:55:18] [31merror[39m: Error in verifyEmail: Company validation failed: phone: Path `phone` is required., registrationDate: Path `registrationDate` is required., password: Path `password` is required., registrationNumber: Path `registrationNumber` is required., companyName: Path `companyName` is required.
+[2025-05-16 12:02:33] [31merror[39m: Error in checkOtp: company.delete is not a function
+[2025-05-18 10:22:15] [31merror[39m: internal server error E11000 duplicate key error collection: Rebuilt-Quantum.companies index: registrationNumber_1 dup key: { registrationNumber: "L12345RJ2020PTC123456" }
+[2025-05-18 10:45:09] [31merror[39m: Login error: Company is not defined
+[2025-05-18 10:46:28] [31merror[39m: Login error: data and hash arguments required
+[2025-05-18 10:53:08] [31merror[39m: Login error: data and hash arguments required
+[2025-05-19 14:48:47] [31merror[39m: Auth middleware error: Cannot read properties of undefined (reading 'split')
+[2025-05-19 14:51:18] [31merror[39m: internal server errror product validation failed: company: Path `company` is required.
+[2025-05-19 15:01:49] [31merror[39m: internal server errror product validation failed: company: Path `company` is required.
+[2025-05-19 15:13:39] [31merror[39m: internal server errror product validation failed: company: Path `company` is required.
+[2025-05-19 15:16:11] [31merror[39m: internal server errror product validation failed: company: Path `company` is required.
+[2025-05-19 15:22:10] [31merror[39m: internal server errror product validation failed: company: Path `company` is required.
+[2025-05-19 15:24:46] [31merror[39m: internal server errror product validation failed: company: Path `company` is required.
+[2025-05-19 15:34:00] [31merror[39m: internal server errror product validation failed: company: Path `company` is required.
+[2025-05-19 15:43:56] [31merror[39m: internal server errror product validation failed: company: Path `company` is required.
+[2025-05-19 15:44:59] [31merror[39m: internal server errror product validation failed: company: Path `company` is required.
+[2025-05-19 15:46:42] [31merror[39m: internal server errror product validation failed: company: Path `company` is required.
+[2025-05-19 15:47:30] [31merror[39m: internal server errror product validation failed: company: Path `company` is required.
+[2025-05-20 15:25:58] [31merror[39m: internal server errror Cast to string failed for value "{
+  email: 'milindvaishnav21@gmail.com',
+  iat: 1747734866,
+  exp: 1747821266
+}" (type Object) at path "email" for model "Company"
+[2025-05-20 15:35:34] [31merror[39m: internal server errror Cast to string failed for value "{
+  email: 'milindvaishnav21@gmail.com',
+  iat: 1747734866,
+  exp: 1747821266
+}" (type Object) at path "email" for model "Company"
+[2025-05-22 11:40:33] [31merror[39m: Auth middleware error: Cannot read properties of undefined (reading 'split')
+[2025-05-22 11:52:40] [31merror[39m: internal server errror product validation failed: category: Path `category` is required., description: Path `description` is required., stock: Path `stock` is required., storage: Path `storage` is required., ram: Path `ram` is required., price: Path `price` is required., brand: Path `brand` is required., modelname: Path `modelname` is required.
+[2025-05-22 14:03:54] [31merror[39m: internal server errror product validation failed: price: Path `price` is required.
+[2025-05-22 14:14:53] [31merror[39m: internal server errror product validation failed: price: Cast to Number failed for value "NaN" (type number) at path "price"
+[2025-05-22 14:23:40] [31merror[39m: internal server errror product validation failed: price: Cast to Number failed for value "NaN" (type number) at path "price"
+[2025-06-23 10:16:48] [31merror[39m: internal server errror product validation failed: price: Path `price` is required.
+[2025-06-23 11:12:12] [31merror[39m: Error in addInCart controller: productFromDb is not defined
+[2025-06-23 11:18:26] [31merror[39m: Error in addInCart controller: Error while creating cart: cart validation failed: products.0.price: Path `price` is required.
+[2025-06-23 21:57:07] [31merror[39m: Error in addInCart controller: Error while creating cart: cart validation failed: products.0.price: Path `price` is required.
+[2025-06-23 22:00:52] [31merror[39m: Error in addInCart controller: Error while creating cart: cart validation failed: products.0.price: Path `price` is required.
+[2025-06-23 22:03:27] [31merror[39m: Error in addInCart controller: Cannot read properties of null (reading 'products')
+[2025-06-25 16:57:56] [31merror[39m: Auth middleware error: jwt expired
+[2025-06-25 16:58:52] [31merror[39m: Error in addInCart controller: finalCart is not defined
+[2025-06-25 17:01:28] [31merror[39m: Error in addInCart controller: finalCart is not defined
+[2025-06-25 17:01:35] [31merror[39m: Error in addInCart controller: finalCart is not defined
+[2025-06-29 19:36:59] [31merror[39m: Auth middleware error: jwt expired
+[2025-07-01 16:55:32] [31merror[39m: Auth middleware error: jwt expired
+[2025-07-01 17:31:01] [31merror[39m: Error in addInCart controller: Cannot read properties of null (reading 'products')
+[2025-07-01 17:33:43] [31merror[39m: Error in addInCart controller: Cannot read properties of null (reading 'products')
+[2025-07-02 16:57:38] [31merror[39m: Auth middleware error: jwt expired
+[2025-07-15 12:27:47] [31merror[39m: Error in addInCart controller: Operation `products.findOne()` buffering timed out after 10000ms
+[2025-07-15 12:38:41] [31merror[39m: Error in addInCart controller: Operation `products.findOne()` buffering timed out after 10000ms
+[2025-07-15 14:36:37] [31merror[39m: Error in addInCart controller: Operation `products.findOne()` buffering timed out after 10000ms
+[2025-07-18 17:46:03] [31merror[39m: Auth middleware error: Cannot read properties of undefined (reading 'split')
