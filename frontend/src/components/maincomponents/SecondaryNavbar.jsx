@@ -2,6 +2,7 @@ import React from "react";
 import { FaUserPlus, FaShoppingCart, FaList } from "react-icons/fa";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { IoIosArrowDown } from "react-icons/io";
+import AccountTypeSelector from "../smallcomponents/AccountTypeSelector";
 
 
 const SecondaryNavbar = () => {
@@ -25,12 +26,16 @@ if (hiddenRoutes.includes(location.pathname)) return null;
         </div>
 
         {/* Right Side - Buttons */}
-        <div className="hidden md:flex items-center space-x-4 relative">
+        <div className="hidden md:flex items-center space-x-4 ">
           {/* Sign Up Button */}
           <button onClick={() => navigate('/register')} className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
             <FaUserPlus className="mr-2" />
             Sign Up
           </button>
+
+          <div className="absolute mt-[14vw] right-[5vw]">
+            <AccountTypeSelector />
+          </div>
 
           
 

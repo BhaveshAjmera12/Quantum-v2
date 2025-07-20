@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axiosInstance from '../../config/axios';
+import { toast } from 'react-toastify';
 
 const CreateForm = () => {
   const location = useLocation();
@@ -37,9 +38,17 @@ const CreateForm = () => {
    try {
      const response = await axiosInstance.post(isLogIn ? '/users/login' : '/users/register' , payload)
   
-    console.log("Successful:", response.data);
+    console.log("Successful:", response.data.token);
+    toast.success(`${isLogIn ? "Login" : "Registration"} Successful`);
+
+    setTimeout(()=>{
+      navigate('/home')
+    },1000)
+
    } catch (error) {
     console.error("Error during form submission:", error);
+    toast.error(error.response.data.message || "Registration Failed");
+
    }
     
   };
