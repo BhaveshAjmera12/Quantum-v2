@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaUserPlus, FaShoppingCart, FaList } from "react-icons/fa";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { IoIosArrowDown } from "react-icons/io";
@@ -6,9 +6,16 @@ import AccountTypeSelector from "../smallcomponents/AccountTypeSelector";
 
 
 const SecondaryNavbar = () => {
+
 const navigate = useNavigate();
 const location = useLocation();
 const hiddenRoutes = ['/login', '/register']
+
+const [visibility, setvisibility] = useState(false)
+const visible = ()=>{
+  setvisibility(prev => !prev);
+}
+
 
 if (hiddenRoutes.includes(location.pathname)) return null;
   
@@ -28,14 +35,17 @@ if (hiddenRoutes.includes(location.pathname)) return null;
         {/* Right Side - Buttons */}
         <div className="hidden md:flex items-center space-x-4 ">
           {/* Sign Up Button */}
-          <button onClick={() => navigate('/register')} className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
+          <button onClick={visible} className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
             <FaUserPlus className="mr-2" />
             Sign Up
           </button>
 
-          <div className="absolute mt-[14vw] right-[5vw]">
+           {/* select user Registration or a seller Registration */}
+          {visibility && (
+            <div className="absolute mt-[14vw] right-[5vw]">
             <AccountTypeSelector />
           </div>
+          )}
 
           
 

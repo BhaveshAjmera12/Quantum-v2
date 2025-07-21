@@ -36,7 +36,9 @@ const CreateForm = () => {
 
     // Example:
    try {
-     const response = await axiosInstance.post(isLogIn ? '/users/login' : '/users/register' , payload)
+     const response = await axiosInstance.post(isLogIn ? '/users/login' : '/users/register' , payload, {
+      withCredentials: true
+     })
   
     console.log("Successful:", response.data.token);
     toast.success(`${isLogIn ? "Login" : "Registration"} Successful`);
