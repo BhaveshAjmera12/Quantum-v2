@@ -2,11 +2,14 @@ import React, { useEffect} from 'react'
 import ProductCard from '../components/smallcomponents/ProductCard'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProducts } from '../redux/Slices/productSlice'
+import { useCart } from '../hooks/useCart'
 
 
 const Shop = () => {
   const dispatch = useDispatch();
   const {products, loading, error} = useSelector(state=> state.product)
+
+    const { handleAddToCart } = useCart(); // ✅ destructure addToCart
 
   useEffect(() => {
     dispatch(fetchProducts())
@@ -19,17 +22,13 @@ const Shop = () => {
     {loading && <p className="text-center text-gray-500">Loading products...</p>}
 
       {error && <p className="text-center text-red-500">Error: {error}</p>}
-    {
-      products.map((product) => (
-        <ProductCard 
-        key={product.id}
-        image={product.images[0]}
-        name={product.modelname}
-        category={product.category}
-        price={product.price}
+     {products.map((product) => (
+        <ProductCard
+          key={product.id}
+          product={product} // ✅ send full product object
+          onAddToCart={() => handleAddToCart(product)} // ✅ call function via props
         />
-      ))
-    }
+      ))}
     </>
   )
 }

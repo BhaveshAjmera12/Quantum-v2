@@ -198,3 +198,36 @@ export const showCart = async (req, res) => {
   }
 };
 
+export const increaseQuantity = async (req, res) => {
+  try {
+    const user = await userModel.findOne({ email: req.user.email });
+    if (!user) return res.status(401).json({ message: "Unauthorized user" });
+
+    const { productId } = req.params;
+    if (!productId) return res.status(400).json({ message: "Product ID is required" });
+
+    const cart = await cartModel.findOne({ user: user._id });
+    if (!cart) return res.status(400).json({ message: "No cart found" });
+
+    const existingProductIndex = cart.products.findIndex(
+      (p) => p.product.toString() === productId
+    );
+
+    if (existingProductIndex === -1) {
+      return res.status(404).json({ message: "Product not found in cart" });
+    }
+
+    cart.products[existingProductIndex].quantity += 1;
+
+    cart.totalItems = cart.products.reduce((sum, p) => sum + p.quantity, 0);
+    cart.totalPrice = cart.products.reduce((sum, p) => sum + p.quantity * p.price, 0);
+
+    await cart.save();
+    return res.status(200).json({ message: "Quantity increased", cart });
+
+  } catch (error) {
+    return res.status(500).json({ message: "Something went wrong", error: error.message });
+  }
+};
+
+
