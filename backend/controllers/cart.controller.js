@@ -167,6 +167,7 @@ export const clearCart = async (req, res) => {
 
 export const showCart = async (req, res) => {
   try {
+    console.log("req.user from token:", req.user);
     const user = await userModel.findOne({ email: req.user.email });
     if (!user) {
       return res.status(401).json({ message: "Unauthorized user" });
@@ -186,7 +187,7 @@ export const showCart = async (req, res) => {
           title: item.product.title,
           price: item.price,
           quantity: item.quantity,
-          image: item.product.image, // only if you store image
+          image: item.product.images[0], // only if you store image
         })),
         totalItems: cart.totalItems,
         totalPrice: cart.totalPrice

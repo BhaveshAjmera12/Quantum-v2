@@ -50,7 +50,8 @@ if (hiddenRoutes.includes(location.pathname)) return null;
           
 
           {/* Cart Button */}
-          <button className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition">
+          <button
+          onClick={()=> navigate('/cartpage')} className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition">
             <FaShoppingCart />
           </button>
 

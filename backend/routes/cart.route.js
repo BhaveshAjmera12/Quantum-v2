@@ -16,6 +16,6 @@ router.patch('/increase/:productId', authUser, increaseQuantity); // 🔥 NEW
 router.patch('/decrease/:productId', authUser, decreaseQuantity); // You already have logic
 router.delete('/remove/:productId', authUser, removeFromCart);    // REST-style
 router.delete('/clear', authUser, clearCart);
-router.get('/', authUser, showCart);                              // REST-style GET
+router.get('/show', authUser, showCart);                              // REST-style GET
 
 export default router;

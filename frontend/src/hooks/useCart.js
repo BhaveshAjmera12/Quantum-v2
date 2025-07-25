@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { addToCart, removeFromCart } from '../redux/Slices/cartSlice';
+import { addToCart, removeFromCart } from '../redux/slices/cartSlice';
 import { toast } from 'react-toastify';
 
 export const useCart = () => {

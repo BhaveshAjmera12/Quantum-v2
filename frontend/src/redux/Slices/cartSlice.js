@@ -37,6 +37,7 @@ export const clearCart = createAsyncThunk('cart/clearCart', async () => {
 export const showCart = createAsyncThunk('cart/showCart', async () => {
   const res = await axiosInstance.get('/cart/show', { withCredentials: true });
   return res.data; // assuming it returns { cartItems: [...] }
+  // console.log(res.data)
 });
 
 // Slice
@@ -79,9 +80,10 @@ const cartSlice = createSlice({
         state.items = [];
       })
       //show cart
-      .addCase(showCart.fulfilled, (state, action) => {
-  state.items = action.payload.cartItems;
-      });
+      // In cartSlice.js (frontend)
+.addCase(showCart.fulfilled, (state, action) => {
+  state.items = action.payload.cart?.products || []; // ✅ Use cart.products
+});
 
   },
 });

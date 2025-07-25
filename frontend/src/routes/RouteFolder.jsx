@@ -4,6 +4,7 @@ import Register from '../screens/Register';
 import Login from '../screens/Login';
 import Home from '../screens/Home';
 import Shop from '../screens/shop';
+import CartPage from '../screens/CartPage';
 
 
 const RouteFolder = () => {
@@ -13,6 +14,7 @@ const RouteFolder = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/cartpage" element={<CartPage />} />
       </Routes>
   )
 }
