@@ -173,22 +173,24 @@ export const showCart = async (req, res) => {
       return res.status(401).json({ message: "Unauthorized user" });
     }
 
-    const cart = await cartModel.findOne({ user: user._id }).populate("products.product");
+    const cart = await cartModel.findOne({ user: user._id })
+    .populate({
+      path: "products.product",
+      model: "product",
+      options: {lean: true}
+
+    });
 
     if (!cart || cart.products.length === 0) {
       return res.status(200).json({ message: "Cart is empty", cart: null });
     }
 
+    const validProducts = cart.products.filter(item => item.product !== null);
+
     return res.status(200).json({
       message: "Cart fetched successfully",
       cart: {
-        products: cart.products.map(item => ({
-          productId: item.product._id,
-          title: item.product.title,
-          price: item.price,
-          quantity: item.quantity,
-          image: item.product.images[0], // only if you store image
-        })),
+        products:validProducts,
         totalItems: cart.totalItems,
         totalPrice: cart.totalPrice
       }

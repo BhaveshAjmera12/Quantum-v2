@@ -55,35 +55,34 @@ const cartSlice = createSlice({
       .addCase(addToCart.pending, (state) => {
         state.loading = true;
       })
-      .addCase(addToCart.fulfilled, (state, action) => {
-        state.loading = false;
-        state.items = action.payload.cartItems;
-      })
+   // Add to cart
+    .addCase(addToCart.fulfilled, (state, action) => {
+      state.items = action.payload.cart?.products || [];
+    })
       .addCase(addToCart.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
-      // Increase Qty
-      .addCase(increaseQty.fulfilled, (state, action) => {
-        state.items = action.payload.cartItems;
-      })
-      // Decrease Qty
-      .addCase(decreaseQty.fulfilled, (state, action) => {
-        state.items = action.payload.cartItems;
-      })
-      // Remove
-      .addCase(removeFromCart.fulfilled, (state, action) => {
-        state.items = action.payload.cartItems;
-      })
-      // Clear
-      .addCase(clearCart.fulfilled, (state, action) => {
-        state.items = [];
-      })
-      //show cart
-      // In cartSlice.js (frontend)
-.addCase(showCart.fulfilled, (state, action) => {
-  state.items = action.payload.cart?.products || []; // ✅ Use cart.products
-});
+      // Show cart
+    .addCase(showCart.fulfilled, (state, action) => {
+      state.items = action.payload.cart?.products || [];
+    })
+    // Increase quantity
+    .addCase(increaseQty.fulfilled, (state, action) => {
+      state.items = action.payload.cart?.products || [];
+    })
+    // Decrease quantity
+    .addCase(decreaseQty.fulfilled, (state, action) => {
+      state.items = action.payload.cart?.products || [];
+    })
+    // Remove item
+    .addCase(removeFromCart.fulfilled, (state, action) => {
+      state.items = action.payload.cart?.products || [];
+    })
+    // Clear cart
+    .addCase(clearCart.fulfilled, (state) => {
+      state.items = [];
+    });
 
   },
 });

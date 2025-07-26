@@ -33,7 +33,11 @@ const CartPage = () => {
   if (!items || items.length === 0)
     return <p className="text-center mt-10 text-gray-500">Your cart is empty</p>;
 
-  const totalPrice = items.reduce((total, item) => total + item.price * item.quantity, 0);
+  // 🧠 Calculate total from items because state.items only has products
+  const grandTotal = items.reduce(
+    (acc, item) => acc + item.product.price * item.quantity,
+    0
+  );
 
   return (
     <div className="max-w-4xl mx-auto p-4">
@@ -45,40 +49,53 @@ const CartPage = () => {
             key={item.product._id}
             className="flex justify-between items-center border-b pb-4"
           >
-            <div>
-              <h2 className="text-lg font-semibold">{item.product.name}</h2>
-              <p className="text-sm text-gray-600">₹{item.price}</p>
-              <div className="flex items-center mt-2 space-x-2">
-                <button
-                  onClick={() => handleDecrease(item.product._id)}
-                  className="px-2 py-1 bg-gray-200 rounded"
-                >
-                  -
-                </button>
-                <span>{item.quantity}</span>
-                <button
-                  onClick={() => handleIncrease(item.product._id)}
-                  className="px-2 py-1 bg-gray-200 rounded"
-                >
-                  +
-                </button>
+            {/* Left Side - Image + Info + Quantity Controls */}
+            <div className="flex items-center gap-4">
+              <img
+                src={item.product.images[0]}
+                alt={item.product.modelname}
+                className="w-24 h-24 object-cover rounded"
+              />
+              <div>
+                <h2 className="text-lg font-semibold">{item.product.brand} {item.product.modelname}</h2>
+                <p className="text-gray-600">₹{item.product.price}</p>
+                <div className="flex items-center mt-2 space-x-2">
+                  <button
+                    onClick={() => handleDecrease(item.product._id)}
+                    className="px-3 py-1 bg-gray-200 rounded"
+                  >
+                    -
+                  </button>
+                  <span className="px-2">{item.quantity}</span>
+                  <button
+                    onClick={() => handleIncrease(item.product._id)}
+                    className="px-3 py-1 bg-gray-200 rounded"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
             </div>
+
+            {/* Right Side - Total per item + Remove */}
             <div className="flex flex-col items-end">
               <button
                 onClick={() => handleRemove(item.product._id)}
-                className="text-red-500 hover:underline"
+                className="text-red-500 hover:underline text-sm"
               >
                 Remove
               </button>
-              <p className="text-sm mt-2">Total: ₹{item.quantity * item.price}</p>
+              <p className="text-sm mt-2">
+                Total: ₹{item.product.price * item.quantity}
+              </p>
             </div>
           </div>
         ))}
       </div>
 
+      {/* Bottom Total and Checkout */}
       <div className="flex justify-between items-center mt-8 border-t pt-4">
-        <h2 className="text-xl font-semibold">Grand Total: ₹{totalPrice}</h2>
+        <h2 className="text-xl font-semibold">Grand Total: ₹{grandTotal}</h2>
         <button
           onClick={handleCheckout}
           className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
