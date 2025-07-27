@@ -13,11 +13,18 @@ const CartPage = () => {
   }, [dispatch]);
 
   const handleIncrease = (productId) => {
-    dispatch(increaseQty(productId));
+  dispatch(increaseQty(productId))
+  .unwrap()
+  .then(() => dispatch(showCart()))
+  .catch((err) => console.log("Error", err));
+
   };
 
   const handleDecrease = (productId) => {
-    dispatch(decreaseQty(productId));
+    dispatch(decreaseQty(productId))
+    .unwrap()
+    .then(()=> dispatch(showCart))
+    .catch((err)=> console.log('error',err))
   };
 
   const handleRemove = (productId) => {

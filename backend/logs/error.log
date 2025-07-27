@@ -51,3 +51,9 @@
 [2025-07-15 12:38:41] [31merror[39m: Error in addInCart controller: Operation `products.findOne()` buffering timed out after 10000ms
 [2025-07-15 14:36:37] [31merror[39m: Error in addInCart controller: Operation `products.findOne()` buffering timed out after 10000ms
 [2025-07-18 17:46:03] [31merror[39m: Auth middleware error: Cannot read properties of undefined (reading 'split')
+[2025-07-27 14:22:26] [31merror[39m: Auth middleware error: jwt expired
+[2025-07-27 14:22:26] [31merror[39m: Auth middleware error: jwt expired
+[2025-07-27 14:23:44] [31merror[39m: Auth middleware error: Cannot read properties of undefined (reading 'split')
+[2025-07-27 14:23:44] [31merror[39m: Auth middleware error: Cannot read properties of undefined (reading 'split')
+[2025-07-27 16:35:16] [31merror[39m: Auth middleware error: Cannot read properties of undefined (reading 'split')
+[2025-07-27 16:35:16] [31merror[39m: Auth middleware error: Cannot read properties of undefined (reading 'split')
