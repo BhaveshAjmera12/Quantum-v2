@@ -57,3 +57,23 @@
 [2025-07-27 14:23:44] [31merror[39m: Auth middleware error: Cannot read properties of undefined (reading 'split')
 [2025-07-27 16:35:16] [31merror[39m: Auth middleware error: Cannot read properties of undefined (reading 'split')
 [2025-07-27 16:35:16] [31merror[39m: Auth middleware error: Cannot read properties of undefined (reading 'split')
+[2025-07-28 16:44:09] [31merror[39m: Error in showCart: Schema hasn't been registered for model "Product".
+Use mongoose.model(name, schema)
+[2025-07-28 16:44:09] [31merror[39m: Error in showCart: Schema hasn't been registered for model "Product".
+Use mongoose.model(name, schema)
+[2025-07-28 16:44:18] [31merror[39m: Error in showCart: Schema hasn't been registered for model "Product".
+Use mongoose.model(name, schema)
+[2025-07-28 16:44:18] [31merror[39m: Error in showCart: Schema hasn't been registered for model "Product".
+Use mongoose.model(name, schema)
+[2025-07-28 16:44:19] [31merror[39m: Error in showCart: Schema hasn't been registered for model "Product".
+Use mongoose.model(name, schema)
+[2025-07-28 16:44:20] [31merror[39m: Error in showCart: Schema hasn't been registered for model "Product".
+Use mongoose.model(name, schema)
+[2025-07-28 16:44:26] [31merror[39m: Error in showCart: Schema hasn't been registered for model "Product".
+Use mongoose.model(name, schema)
+[2025-07-28 16:44:26] [31merror[39m: Error in showCart: Schema hasn't been registered for model "Product".
+Use mongoose.model(name, schema)
+[2025-07-28 16:44:41] [31merror[39m: Error in showCart: Schema hasn't been registered for model "Product".
+Use mongoose.model(name, schema)
+[2025-07-28 16:44:41] [31merror[39m: Error in showCart: Schema hasn't been registered for model "Product".
+Use mongoose.model(name, schema)
