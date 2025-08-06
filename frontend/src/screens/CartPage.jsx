@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { showCart, increaseQty, decreaseQty, removeFromCart } from '../redux/slices/cartSlice';
+import { showCart, increaseQty, decreaseQty, removeFromCart, clearCart } from '../redux/slices/cartSlice';
 import { useNavigate } from 'react-router-dom';
 
 const CartPage = () => {
@@ -30,6 +30,14 @@ const CartPage = () => {
   const handleRemove = (productId) => {
     dispatch(removeFromCart(productId));
   };
+
+  const handleClearCart = () => {
+  dispatch(clearCart())
+    .unwrap()
+    .then(() => dispatch(showCart()))
+    .catch((err) => console.error("Clear cart error:", err));
+};
+
 
   const handleCheckout = () => {
     navigate('/checkout');
@@ -103,6 +111,14 @@ const CartPage = () => {
       {/* Bottom Total and Checkout */}
       <div className="flex justify-between items-center mt-8 border-t pt-4">
         <h2 className="text-xl font-semibold">Grand Total: ₹{grandTotal}</h2>
+
+         <button
+      onClick={handleClearCart}
+      className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
+    >
+      Clear Cart
+    </button>
+
         <button
           onClick={handleCheckout}
           className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"

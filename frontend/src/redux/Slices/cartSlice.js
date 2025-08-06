@@ -49,42 +49,57 @@ const cartSlice = createSlice({
     error: null,
   },
   reducers: {},
-  extraReducers: (builder) => {
-    builder
-      // Add to cart
-      .addCase(addToCart.pending, (state) => {
-        state.loading = true;
-      })
-   // Add to cart
+  // Update all cases to properly handle the response
+extraReducers: (builder) => {
+  builder
+    // Add to cart
+    .addCase(addToCart.pending, (state) => {
+      state.loading = true;
+    })
     .addCase(addToCart.fulfilled, (state, action) => {
-      state.items = action.payload.cart?.products || [];
+      state.loading = false;
+      state.items = action.payload.cart?.products || []; // ✅ Use cart.products
+      state.error = null;
     })
-      .addCase(addToCart.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-      // Show cart
+    .addCase(addToCart.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    })
+    
+    // Show cart
+    .addCase(showCart.pending, (state) => {
+      state.loading = true;
+    })
     .addCase(showCart.fulfilled, (state, action) => {
-      state.items = action.payload.cart?.products || [];
+      state.loading = false;
+      state.items = action.payload.cart?.products || []; // ✅ Use cart.products
+      state.error = null;
     })
+    .addCase(showCart.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    })
+    
     // Increase quantity
     .addCase(increaseQty.fulfilled, (state, action) => {
-      state.items = action.payload.cart?.products || [];
+      state.items = action.payload.cart?.products || []; // ✅
     })
+    
     // Decrease quantity
     .addCase(decreaseQty.fulfilled, (state, action) => {
-      state.items = action.payload.cart?.products || [];
+      state.items = action.payload.cart?.products || []; // ✅
     })
+    
     // Remove item
     .addCase(removeFromCart.fulfilled, (state, action) => {
-      state.items = action.payload.cart?.products || [];
+      state.items = action.payload.cart?.products || []; // ✅
     })
+    
     // Clear cart
     .addCase(clearCart.fulfilled, (state) => {
       state.items = [];
     });
-
-  },
+}
 });
 
 export default cartSlice.reducer;

@@ -43,10 +43,20 @@ export const addInCart = async (req, res) => {
 
     let cart = await cartModel.findOne({ user: user._id });
     
-    if (!cart) {
-      await createCart(user._id, productId, productFromdb.price);
-      cart = await cartModel.findOne({ user: user._id });
-    } else {
+     if (!cart) {
+      // Create new cart - ensure totals are set
+      cart = new cartModel({
+        user: user._id,
+        products: [{
+          product: productId,
+          quantity: 1,
+          price: productFromdb.price
+        }],
+        totalItems: 1, // ✅ Set explicitly
+        totalPrice: productFromdb.price // ✅ Set explicitly
+      });
+      await cart.save();
+    }else {
       const existingProductIndex = cart.products.findIndex(
         p => p.product.toString() === productId
       );
@@ -69,14 +79,22 @@ export const addInCart = async (req, res) => {
       await cart.save();
     }
 
-    const formattedCart = await getFormattedCart(cart._id);
+    // Get fresh cart data with populated products
+    const freshCart = await cartModel.findById(cart._id);
+    const formattedCart = await getFormattedCart(freshCart._id);
+    
     return res.status(200).json({
       message: "Product added to cart",
       cart: formattedCart
     });
 
   } catch (error) {
-    logger.error("Error in addInCart controller:", error);
+    logger.error("Error in addInCart controller:", {
+      message: error.message,
+      stack: error.stack,
+      userId: req.user?.email,
+      productId
+    });
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
@@ -201,12 +219,25 @@ export const showCart = async (req, res) => {
     if (!user) return res.status(401).json({ message: "Unauthorized user" });
 
     const cart = await cartModel.findOne({ user: user._id });
-    if (!cart) return res.status(200).json({ message: "Cart is empty", cart: null });
+    
+    // Handle empty cart case first
+    if (!cart || cart.products.length === 0) {
+      return res.status(200).json({ 
+        message: "Cart is empty", 
+        cart: null 
+      });
+    }
 
     const formattedCart = await getFormattedCart(cart._id);
+    
+    // ✅ Ensure we return products even if formattedCart is null
     return res.status(200).json({
       message: "Cart fetched successfully",
-      cart: formattedCart
+      cart: formattedCart || {
+        products: [],
+        totalItems: 0,
+        totalPrice: 0
+      }
     });
 
   } catch (error) {
